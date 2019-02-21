@@ -648,17 +648,9 @@ docker rmi -f <ID hoặc NAME>
 ```
 
 Tham khảo:
-
 [Docker Official](https://docs.docker.com/engine/reference/builder)
-
-[Docker Compose](https://docs.docker.com/compose/reference/overview/)
-
-[Docker cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
-
+[Docker Compose](https://docs.docker.com/compose/reference/overview/)[Docker cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
 [Linode](https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/)
-
 [Viblo asia](https://viblo.asia/s/2018-cung-nhau-hoc-docker-Wj53Omjb56m)
-
 [Hocchudong](https://github.com/hocchudong/ghichep-docker/)
-
 [Kipalog](https://kipalog.com/posts/Toi-da-dung-Docker-nhu-the-nao)
