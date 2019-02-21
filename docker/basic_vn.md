@@ -466,7 +466,7 @@ services:
 
 * `environment`: Khai báo các biến môi trường cho container. cái này mình khai báo để ghi đè vào file .env trong code
 
-* `build`: chạy file `Dockerfile` trong cùng cấp folder ( mặc định là nó sẽ tìm file `Dockerfile`)
+* `build: .`: chạy file `Dockerfile` trong cùng cấp folder ( mặc định là nó sẽ tìm file `Dockerfile`)
 
 * `deploy`: khai báo 1 container ( mục đích là deploy)
 
