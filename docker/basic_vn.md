@@ -500,7 +500,11 @@ docker rmi -f <ID hoặc NAME>
 
 Tham khảo:
 https://docs.docker.com/engine/reference/builder
+
 https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index
+
 https://viblo.asia/s/2018-cung-nhau-hoc-docker-Wj53Omjb56m
+
 https://github.com/hocchudong/ghichep-docker/
+
 https://kipalog.com/posts/Toi-da-dung-Docker-nhu-the-nao
