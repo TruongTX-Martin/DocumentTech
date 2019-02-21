@@ -427,12 +427,19 @@ HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
 ### Tóm tắt những command hay dùng:
 
 **`FROM <base_image>:<phiên_bản>`**: đây là câu lệnh bắt buộc phải có trong bất kỳ Dockerfile nào. Nó dùng để khai báo base Image mà chúng ta sẽ build mới Image của chúng ta.
+
 **`MAINTAINER <tên_tác_giả>`**: câu lệnh này dùng để khai báo trên tác giả tạo ra Image, chúng ta có thể khai báo nó hoặc không.
+
 **`RUN <câu_lệnh>`**: chúng ta sử dụng lệnh này để chạy một command cho việc cài đặt các công cụ cần thiết cho Image của chúng ta.
+
 **`CMD <câu_lệnh>`**: trong một Dockerfile thì chúng ta chỉ có duy nhất một câu lệnh CMD, câu lệnh này dùng để xác định quyền thực thi của các câu lệnh khi chúng ta tạo mới Image.
+
 **`ADD <src> <dest>`**: câu lệnh này dùng để copy một tập tin local hoặc remote nào đó (khai báo bằng <src>) vào một vị trí nào đó trên Container (khai báo bằng dest).
+
 **`ENV <tên_biến>`**: định nghĩa biến môi trường trong Container.
+
 **`ENTRYPOINT <câu_lệnh>`**: định nghĩa những command mặc định, cái mà sẽ được chạy khi container running.
+
 **`VOLUME <tên_thư_mục>`**: dùng để truy cập hoặc liên kết một thư mục nào đó trong Container.
 
 ### Với Docker file:
