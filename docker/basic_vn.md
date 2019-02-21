@@ -6,13 +6,18 @@ Một số developer thường tạo sẵn các môi trường này, và upload 
 
 #### Docker bao gồm các thành phần chính:
 `Docker Engine`: dùng để tạo ra Docker image và chạy Docker container.
+
 `Docker Hub`: dịch vụ lưu trữ giúp chứa các Docker image.
 
 #### Một số khái niệm khác:
 `Docker Machine`: tạo ra các Docker engine trên máy chủ.
+
 `Docker Compose`: chạy ứng dụng bằng cách định nghĩa cấu hình các Docker container thông qua tệp cấu hình
+
 `Docker image`: một dạng tập hợp các tệp của ứng dụng, được tạo ra bởi Docker engine. Nội dung của các Docker image sẽ không bị thay đổi khi di chuyển. Docker image được dùng để chạy các Docker container.
+
 `Docker Container`: một dạng runtime của các Docker image, dùng để làm môi trường chạy ứng dụng.
+
 #### Docker mang lại những giá trị gì
 
 Với Docker, chúng ta có thể đóng gói mọi ứng dụng vd như webapp, backend, MySQL, BigData…thành các containers và có thể chạy ở “hầu hết” các môi trường vd như Linux, Mac, Window…
@@ -63,7 +68,7 @@ INSTRUCTION arguments
 ```sh
 RUN echo 'we are running some # of cool things'
 ```
-[Tham khảo cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
+
 
 ### Dockerfile Commands
 
@@ -153,6 +158,7 @@ CMD ["sh", "./setup.sh"] # cmd with shell
 * sự khác nhau giữa `RUN` và `CMD` [tham khảo đây](https://github.com/hocchudong/ghichep-docker/blob/master/docs/docker-tips/docker-dockerfile-run-with-cmd.md)
 
 **[4. LABEL](https://docs.docker.com/engine/reference/builder/#label)**
+
 Cấu trúc:
 ```sh
 LABEL <key>=<value> <key>=<value> <key>=<value> ...
@@ -183,6 +189,7 @@ that label-values can span multiple lines."
 * Nếu Docker gặp nhãn / khóa đã tồn tại, giá trị mới sẽ ghi đè bất kỳ nhãn nào trước đó bằng các keys giống hệt nhau.
 
 **[5. MAINTAINER (deprecated)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated)**
+
 Cấu trúc:
 ```sh
 MAINTAINER <name>
@@ -196,6 +203,7 @@ LABEL maintainer="SvenDowideit@home.org.au"
 ```
 
 **[6. EXPOSE](https://docs.docker.com/engine/reference/builder/#expose)**
+
 Cấu trúc:
 ```sh
 EXPOSE <port> [<port>/<protocol>...]
@@ -203,6 +211,7 @@ EXPOSE <port> [<port>/<protocol>...]
 * Lệnh EXPOSE thông báo cho Docker rằng image sẽ lắng nghe trên các cổng được chỉ định khi chạy. Lưu ý là cái này chỉ để khai báo, chứ ko có chức năng nat port từ máy host vào container. Muốn nat port, thì phải sử dụng cờ -p (nat một vài port) hoặc -P (nat tất cả các port được khai báo trong EXPOSE) trong quá trình khởi tạo contrainer.
 
 **[7. ENV](https://docs.docker.com/engine/reference/builder/#env)**
+
 Cấu trúc:
 ```sh
 ENV <key> <value>
@@ -217,6 +226,7 @@ ENV myDog Rex The Dog
 ENV myCat fluffy
 ```
 **[8. ADD](https://docs.docker.com/engine/reference/builder/#add)**
+
 Cấu trúc:
 ```sh
 ADD [--chown=<user>:<group>] <src>... <dest>
@@ -244,6 +254,7 @@ ADD arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
 ```
 
 **[9. ADD](https://docs.docker.com/engine/reference/builder/#copy)**
+
 Cấu trúc:
 ```sh
 COPY [--chown=<user>:<group>] <src>... <dest>
@@ -265,6 +276,7 @@ COPY arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
  Khác biệt giữ `Add` và `Copy` [tham khảo tại đây](https://github.com/hocchudong/ghichep-docker/blob/master/docs/docker-tips/docker-dockerfile-add-with-copy.md)
 
 **[10. ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint)**
+
 Cấu trúc:
 ```sh
 ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
@@ -285,6 +297,7 @@ ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 ](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact)
 
 **[11. VOLUME](https://docs.docker.com/engine/reference/builder/#volume)**
+
 Cấu trúc:
 ```sh
 VOLUME ["/data"]
@@ -304,6 +317,7 @@ VOLUME /myvol
 ```
 
 **[12. USER](https://docs.docker.com/engine/reference/builder/#user)**
+
 Cấu trúc:
 ```sh
 USER <user>[:<group>] or
@@ -312,6 +326,7 @@ USER <UID>[:<GID>]
 * Set username hoặc UID để chạy các lệnh RUN, CMD, ENTRYPOINT trong dockerfiles.
 
 **[13. WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir)**
+
 Cấu trúc:
 ```sh
 WORKDIR /path/to/workdir
@@ -329,6 +344,7 @@ RUN pwd
 Kết quả khi dùng pwd command trong Dockerfile sẽ là /a/b/c
 
 **[14. ARG](https://docs.docker.com/engine/reference/builder/#arg)**
+
 Cấu trúc:
 ```sh
 ARG <name>[=<default value>]
@@ -345,6 +361,7 @@ ARG buildno
 ```
 
 **[15. STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal)**
+
 Cấu trúc:
 ```sh
 STOPSIGNAL signal
@@ -353,6 +370,7 @@ STOPSIGNAL signal
 * Gửi tín hiệu để container tắt đúng cách.
 
 **[16. SHELL](https://docs.docker.com/engine/reference/builder/#shell)**
+
 Cấu trúc:
 ```sh
 SHELL ["executable", "parameters"]
@@ -380,6 +398,7 @@ SHELL ["cmd", "/S"", "/C"]
 RUN echo hello
 ```
 **[17. ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild)**
+
 Cấu trúc:
 ```sh
 ONBUILD [INSTRUCTION]
@@ -389,6 +408,7 @@ ONBUILD [INSTRUCTION]
 * Ví dụ + ref: http://container42.com/2014/02/06/docker-quicktip-3-onbuild/
 
 **[18. HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck)**
+
 Cấu trúc:
 ```sh
 HEALTHCHECK [<options>] CMD <command> (check container health by running a command inside the container)
@@ -469,7 +489,7 @@ hoặc:
 
 ```sh
 docker rmi -f <ID hoặc NAME>
-```a
+```
 
 Tham khảo:
 https://docs.docker.com/engine/reference/builder
