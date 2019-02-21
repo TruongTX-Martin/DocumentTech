@@ -443,7 +443,7 @@ HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
 **`VOLUME <tên_thư_mục>`**: dùng để truy cập hoặc liên kết một thư mục nào đó trong Container.
 
 ### Với Docker file:
-** Pull một image từ Docker Hub**
+**Pull một image từ Docker Hub**
 ```sh
 docker pull <image name>
 ```
