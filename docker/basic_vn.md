@@ -4,7 +4,7 @@ Docker là một công cụ tạo môi trường được "đóng gói" (còn g�
 
 Một số developer thường tạo sẵn các môi trường này, và upload [lên mạng](https://hub.docker.com) để mọi người lấy về dùng, và mấy cái này gọi là các Images.
 
-####Docker bao gồm các thành phần chính:
+#### Docker bao gồm các thành phần chính:
 `Docker Engine`: dùng để tạo ra Docker image và chạy Docker container.
 `Docker Hub`: dịch vụ lưu trữ giúp chứa các Docker image.
 
