@@ -5,11 +5,10 @@ Docker là một công cụ tạo môi trường được "đóng gói" (còn g�
 Một số developer thường tạo sẵn các môi trường này, và upload [lên mạng](https://hub.docker.com) để mọi người lấy về dùng, và mấy cái này gọi là các Images.
 
 ####Docker bao gồm các thành phần chính:
-
 `Docker Engine`: dùng để tạo ra Docker image và chạy Docker container.
 `Docker Hub`: dịch vụ lưu trữ giúp chứa các Docker image.
-#### Một số khái niệm khác:
 
+#### Một số khái niệm khác:
 `Docker Machine`: tạo ra các Docker engine trên máy chủ.
 `Docker Compose`: chạy ứng dụng bằng cách định nghĩa cấu hình các Docker container thông qua tệp cấu hình
 `Docker image`: một dạng tập hợp các tệp của ứng dụng, được tạo ra bởi Docker engine. Nội dung của các Docker image sẽ không bị thay đổi khi di chuyển. Docker image được dùng để chạy các Docker container.
@@ -54,7 +53,6 @@ CMD
 ### Dockerfile Systax
 
 ```sh
-# Comment
 INSTRUCTION arguments
 ```
 
@@ -63,7 +61,6 @@ INSTRUCTION arguments
 * Ví dụ:
 
 ```sh
-# Comment
 RUN echo 'we are running some # of cool things'
 ```
 [Tham khảo cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
@@ -170,7 +167,19 @@ LABEL version="1.0"
 LABEL description="This text illustrates \
 that label-values can span multiple lines."
 ```
-* Để xem các label của images, dùng lệnh docker inspect. "Labels": { "com.example.vendor": "ACME Incorporated" "com.example.label-with-value": "foo", "version": "1.0", "description": "This text illustrates that label-values can span multiple lines.", "multi.label1": "value1", "multi.label2": "value2", "other": "value3" },
+* Để xem các label của images, dùng lệnh docker inspect. 
+
+```
+"Labels": {
+    "com.example.vendor": "ACME Incorporated"
+    "com.example.label-with-value": "foo",
+    "version": "1.0",
+    "description": "This text illustrates that label-values can span multiple lines.",
+    "multi.label1": "value1",
+    "multi.label2": "value2",
+    "other": "value3"
+},
+```
 * Nếu Docker gặp nhãn / khóa đã tồn tại, giá trị mới sẽ ghi đè bất kỳ nhãn nào trước đó bằng các keys giống hệt nhau.
 
 **[5. MAINTAINER (deprecated)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated)**
@@ -302,7 +311,7 @@ USER <UID>[:<GID>]
 ```
 * Set username hoặc UID để chạy các lệnh RUN, CMD, ENTRYPOINT trong dockerfiles.
 
-**[12.WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir)**
+**[13. WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir)**
 Cấu trúc:
 ```sh
 WORKDIR /path/to/workdir
@@ -319,7 +328,7 @@ RUN pwd
 ```
 Kết quả khi dùng pwd command trong Dockerfile sẽ là /a/b/c
 
-**[13.ARG](https://docs.docker.com/engine/reference/builder/#arg)**
+**[14. ARG](https://docs.docker.com/engine/reference/builder/#arg)**
 Cấu trúc:
 ```sh
 ARG <name>[=<default value>]
@@ -335,7 +344,7 @@ ARG buildno
 ...
 ```
 
-**[14.STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal)**
+**[15. STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal)**
 Cấu trúc:
 ```sh
 STOPSIGNAL signal
@@ -343,7 +352,7 @@ STOPSIGNAL signal
 
 * Gửi tín hiệu để container tắt đúng cách.
 
-**[15.SHELL](https://docs.docker.com/engine/reference/builder/#shell)**
+**[16. SHELL](https://docs.docker.com/engine/reference/builder/#shell)**
 Cấu trúc:
 ```sh
 SHELL ["executable", "parameters"]
@@ -370,7 +379,7 @@ RUN Write-Host hello
 SHELL ["cmd", "/S"", "/C"]
 RUN echo hello
 ```
-**[16.ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild)**
+**[17. ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild)**
 Cấu trúc:
 ```sh
 ONBUILD [INSTRUCTION]
@@ -378,6 +387,21 @@ ONBUILD [INSTRUCTION]
 
 * Chỉ thị ONBUILD được khai báo trong base image. Và khi child image build image từ base image thì lệnh ONBUILD mới được thực thi.
 * Ví dụ + ref: http://container42.com/2014/02/06/docker-quicktip-3-onbuild/
+
+**[18. HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck)**
+Cấu trúc:
+```sh
+HEALTHCHECK [<options>] CMD <command> (check container health by running a command inside the container)
+HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
+```
+
+* Cho Docker biết cách kiểm tra một container để kiểm tra xem nó có còn hoạt động không
+* Các `options` xuất hiện trước `CMD`:
+```sh
+--interval=<duration> (default: 30s)
+--timeout=<duration> (default: 30s)
+--retries=<number> (default: 3)
+```
 
 
 ### Tóm tắt những command hay dùng:
