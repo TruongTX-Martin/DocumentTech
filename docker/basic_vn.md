@@ -499,12 +499,13 @@ docker rmi -f <ID hoặc NAME>
 ```
 
 Tham khảo:
-https://docs.docker.com/engine/reference/builder
 
-https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index
+[Docker Official](https://docs.docker.com/engine/reference/builder)
 
-https://viblo.asia/s/2018-cung-nhau-hoc-docker-Wj53Omjb56m
+[Docker cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
 
-https://github.com/hocchudong/ghichep-docker/
+[Viblo asia](https://viblo.asia/s/2018-cung-nhau-hoc-docker-Wj53Omjb56m)
 
-https://kipalog.com/posts/Toi-da-dung-Docker-nhu-the-nao
+[Hocchudong](https://github.com/hocchudong/ghichep-docker/)
+
+[Kipalog](https://kipalog.com/posts/Toi-da-dung-Docker-nhu-the-nao)
