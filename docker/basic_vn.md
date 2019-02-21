@@ -422,7 +422,7 @@ HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
 --timeout=<duration> (default: 30s)
 --retries=<number> (default: 3)
 ```
-
+___
 ### [Docker Compose](https://docs.docker.com/compose/reference/overview/)
 Docker Compose, hay gọi ngắn gọn là Compose là một công cụ dùng để định nghĩa và chạy multi-container Docker app. Với Compose, bạn sử dụng sẽ thiết lập các thông số cho các service của app mình trong Compose file và chạy chúng với chỉ một command đơn giản.
 
@@ -572,8 +572,8 @@ Tìm hiểu thêm các lệnh dùng hoặc xem thêm ở đây [Docker Compose](
 
 `docker-compose -h|--help`
 
-
-### Tóm tắt những command hay dùng:
+___
+### Tóm tắt những command hay dùng trong Docker:
 
 **`FROM <base_image>:<phiên_bản>`**: đây là câu lệnh bắt buộc phải có trong bất kỳ Dockerfile nào. Nó dùng để khai báo base Image mà chúng ta sẽ build mới Image của chúng ta.
 
