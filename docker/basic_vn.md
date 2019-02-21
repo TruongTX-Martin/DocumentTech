@@ -472,7 +472,7 @@ services:
 
 * `context: ./`: để chỉ định cho đường dẫn dockerfile nếu không muốn tìm file mặc định là `Dockerfile`
 
-* `dockerfile: Dockerfile.deploy`: Chỉ thị tên file của container `deploy`
+* `dockerfile: Dockerfile.deploy`: Chỉ thị tên file Dockerfile của container `deploy`
 
 
 Một ví dụ khác:
@@ -528,6 +528,7 @@ services:
 * Khởi chạy
 
 **Một vài câu lệnh thông dụng trong Docker compose:**
+
 Cấu trúc:
 ```sh
 $ docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
