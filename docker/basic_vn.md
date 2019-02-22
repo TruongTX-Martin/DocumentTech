@@ -253,7 +253,7 @@ ADD test /absoluteDir/         # adds "test" to /absoluteDir/
 ADD arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
 ```
 
-**[9. ADD](https://docs.docker.com/engine/reference/builder/#copy)**
+**[9. COPY](https://docs.docker.com/engine/reference/builder/#copy)**
 
 Cấu trúc:
 ```sh
