@@ -1,4 +1,4 @@
-Mình thấy bài viết này rất chi tiết giới thiệu về [basic jenkins pipeline.](https://blog.vietnamlab.vn/2017/11/22/huong-dan-tao-jenkinsfile/) và [beginer jenkins](https://viblo.asia/p/jenkins-pipeline-for-beginners-Qbq5QgJJZD8)  nên mình sẽ không giới thiệu và hướng dẫn về jenkins pipeline nữa. Bài viết này mình sẽ giới thiệu và cách setup jenkins với reactjs.
+Mình thấy bài viết này[basic jenkins pipeline.](https://blog.vietnamlab.vn/2017/11/22/huong-dan-tao-jenkinsfile/) và [beginer jenkins](https://viblo.asia/p/jenkins-pipeline-for-beginners-Qbq5QgJJZD8)   giới thiệu rất chi tiết về jenkins về  nên mình sẽ không giới thiệu và hướng dẫn về jenkins pipeline nữa. Bài viết này mình sẽ giới thiệu và cách setup jenkins với reactjs.
 
 [Offical Document](https://jenkins.io/doc/book/pipeline/syntax/)
 
