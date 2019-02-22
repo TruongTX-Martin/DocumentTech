@@ -253,7 +253,7 @@ ADD test /absoluteDir/         # adds "test" to /absoluteDir/
 ADD arr[[]0].txt /mydir/    # copy a file named "arr[0].txt" to /mydir/
 ```
 
-**[9. ADD](https://docs.docker.com/engine/reference/builder/#copy)**
+**[9. COPY](https://docs.docker.com/engine/reference/builder/#copy)**
 
 Cấu trúc:
 ```sh
@@ -422,9 +422,158 @@ HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
 --timeout=<duration> (default: 30s)
 --retries=<number> (default: 3)
 ```
+___
+### [Docker Compose](https://docs.docker.com/compose/reference/overview/)
+Docker Compose, hay gọi ngắn gọn là Compose là một công cụ dùng để định nghĩa và chạy multi-container Docker app. Với Compose, bạn sử dụng sẽ thiết lập các thông số cho các service của app mình trong Compose file và chạy chúng với chỉ một command đơn giản.
+
+Compose là một công cụ tuyệt với không chỉ dùng cho development, testing, staging environments, mà còn ứng dụng trong CI workflows. Việc sử dụng Docker Compose được tóm lược trong 3 bước cơ bản sau:
+* Khai báo app’s environment với Dockerfile.
+* Khai báo các services cần thiết để chạy app trong docker-compose.yml.
+* Run docker-compose up và Compose sẽ start và run app.
+
+**Note:**
+* dockerfile dùng để build các image.
+* docker-compose dùng để build và run các container.
+* docker-compose viết theo cú pháp YAML, các lệnh khai báo trong docker-compose gần tương tự với thao tác chạy container docker run.
+* docker-compose cung chấp chức năng Horizontally scaled, cho phép ta tạo ra nhiều container giống nhau một cách nhanh chóng. Bằng cách sử dụng lệnh
+`docker-compose scale name_service=5`
+Trong đó, name_service là tên services cần tạo container. 5 là số container sẽ được tạo ra.
+
+Ví dụ `docker-compose.yml` :
+
+Ví dụ:
+```sh
+version: '3.4'
+services:
+  web:
+    environment:
+      - APP_KEY=xxxxxxxx
+      - DB_HOST=google.com
+      - DB_DATABASE=google
+      - DB_USERNAME=root
+      - DB_PASSWORD=123456
+    build: .
+  deploy:
+    build:
+      context: ./
+      dockerfile: Dockerfile.deploy
+```
+* `version: '3.4'`: Chỉ ra phiên bản docker-compose sẽ sử dụng.
+
+* `services:`: Trong mục services, chỉ ra những services (containers) mà ta sẽ cài đặt.
+
+* `web`: khai báo 1 container, ở đây mình muốn thực thi build không thôi ( không có deploy)
+
+* `environment`: Khai báo các biến môi trường cho container. cái này mình khai báo để ghi đè vào file .env trong code
+
+* `build: .`: chạy file `Dockerfile` trong cùng cấp folder ( mặc định là nó sẽ tìm file `Dockerfile`)
+
+* `deploy`: khai báo 1 container ( mục đích là deploy)
+
+* `context: ./`: để chỉ định cho đường dẫn dockerfile nếu không muốn tìm file mặc định là `Dockerfile`
+
+* `dockerfile: Dockerfile.deploy`: Chỉ thị tên file Dockerfile của container `deploy`
 
 
-### Tóm tắt những command hay dùng:
+Một ví dụ khác:
+
+```sh
+version: '2'
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - ./data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: wordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "8000:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_PASSWORD: wordpress
+```
+
+* `version: '2'`: Chỉ ra phiên bản docker-compose sẽ sử dụng.
+
+* `services:`: Trong mục services, chỉ ra những services (containers) mà ta sẽ cài đặt. Ở đây, tạo sẽ tạo ra services tương ứng với 2 containers là db và wordpress.
+
+* Trong services `db`:
+
+* `image`: chỉ ra image sẽ được sử dụng để create containers. Ngoài ra, bạn có thể viết dockerfile và khai báo lệnh build để containers sẽ được create từ dockerfile.
+
+* `volumes`: mount thư mục data trên host (cùng thư mục cha chứa file docker-compose) với thư mục /var/lib/mysql trong container.
+
+* `restart: always`: Tự động khởi chạy khi container bị shutdown.
+
+* `environment`: Khai báo các biến môi trường cho container. Cụ thể là thông tin cơ sở dữ liệu.
+
+* Trong services wordpress:
+
+* `depends_on`: db: Chỉ ra sự phụ thuộc của services wordpress với services db. Tức là services db phải chạy và tạo ra trước, thì services wordpress mới chạy.
+
+* `ports`: Forwards the exposed port 80 của container sang port 8000 trên host machine.
+
+* `environment`: Khai báo các biến môi trường. Sau khi tạo ra db ở container trên, thì sẽ lấy thông tin đấy để cung cấp cho container wordpress (chứa source code).
+
+* Khởi chạy
+
+**Một vài câu lệnh thông dụng trong Docker compose:**
+
+Cấu trúc:
+```sh
+$ docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
+$ docker-compose -h|--help
+```
+
+```sh
+docker-compose up -d   
+```
+* build và chạy các container. Giống như  chạy 1 container với `docker run`, `-d` để cho nó chạy background.
+
+```sh
+docker-compose down --volumes
+```
+* Để xóa hoàn toàn container và data volume 
+
+```sh
+docker-compose exec 
+```
+
+```sh
+docker-compose stop
+```
+* Để kết thúc các services đang chạy.
+
+Ngoài ra còn có các lệnh:
+
+```sh
+docker-compose ps    # Hiển thị danh sách các container
+```
+```sh
+docker-compose pause
+docker-compose unpause
+```
+
+```sh
+docker-compose start
+```
+
+Tìm hiểu thêm các lệnh dùng hoặc xem thêm ở đây [Docker Compose](https://docs.docker.com/compose/reference/overview/)
+
+`docker-compose -h|--help`
+
+___
+### Tóm tắt những command hay dùng trong Docker:
 
 **`FROM <base_image>:<phiên_bản>`**: đây là câu lệnh bắt buộc phải có trong bất kỳ Dockerfile nào. Nó dùng để khai báo base Image mà chúng ta sẽ build mới Image của chúng ta.
 
@@ -499,13 +648,9 @@ docker rmi -f <ID hoặc NAME>
 ```
 
 Tham khảo:
-
 [Docker Official](https://docs.docker.com/engine/reference/builder)
-
-[Docker cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
-
+[Docker Compose](https://docs.docker.com/compose/reference/overview/)[Docker cheat sheet](https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index)
+[Linode](https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/)
 [Viblo asia](https://viblo.asia/s/2018-cung-nhau-hoc-docker-Wj53Omjb56m)
-
 [Hocchudong](https://github.com/hocchudong/ghichep-docker/)
-
 [Kipalog](https://kipalog.com/posts/Toi-da-dung-Docker-nhu-the-nao)
