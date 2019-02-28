@@ -344,3 +344,7 @@ appcenter(
     ) 
 ```
 ### 3: Jenkin
+
+### 3.1: Định nghĩa
+### 3.1: Cài đặt
+### 3.1: Sử dụng Jenkin trong CI/CD
