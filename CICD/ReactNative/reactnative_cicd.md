@@ -22,6 +22,11 @@
 ```sh
 xcode-select --install
 ```
+- Để sử dụng fastlane, chúng ta phải cài đặt thêm một số tool đi kèm như :
+### [match](https://docs.docker.com/compose/reference/overview/)
+### [gym](https://docs.docker.com/compose/reference/overview/)
+### [pilot](https://docs.docker.com/compose/reference/overview/)
+### [supply](https://docs.docker.com/compose/reference/overview/)
 * Cài đặt fastlane 
 `Sử dụng Homebrew`
 ```sh
