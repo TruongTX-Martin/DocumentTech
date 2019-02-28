@@ -471,3 +471,14 @@ pipeline {
     }
 }
 ```
+- @Library khai báo việc import library vào trong jenkins.
+- agent : chỉ định môi trường sẽ thực thi các thao tác trong steps
+- environment: được khai báo trong block pipeline hoặc stage, là 1 chuỗi các cặp Key-Val định nghĩa các biến môi trường cho toàn bộ (global - nếu để tại scope pipeline) hoặc cho 1 stage riêng ( nếu được khai báo trong block stage đấy ). Có hàm credentials() để lấy thông tin xác thực nhạy cảm (biến định nghĩa ra sẽ ko thể xem được raw text của nó mà chỉ thấy được **** nhưng có thể sử dụng để xác thực được. Ở đây mình khai báo các biến cho cả slack library, aws key và gitlab.
+- stages: Mình khai báo 1 stage cha, chứa các stage con. Các stage con có thể hiểu như các bước thực thi.
+- steps : Là block con bên trong block stage là các action thực thi các công việc cần thiết cho mỗi stage
+- Trông mỗi step, gọi lệnh build fastlane: 
+```
+sh "fastlane ios build_staging"
+sh "fastlane android build_staging" 
+```
+Sau khi chạy lệnh này fastlane sẽ build và distribute app lên AppCenter
