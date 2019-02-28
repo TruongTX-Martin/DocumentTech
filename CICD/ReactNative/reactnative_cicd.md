@@ -80,7 +80,7 @@ sudo gem install fastlane -NV
 fastlane ios lane or fastlane android lane
 ```
 
-### 2.5: Sử dụng Fastlane qua Project thực tế ShouboTenken
+### 2.5: Sử dụng Fastlane qua Project thực tế: ShouboTenken
 
 ```
   # update_fastlane
@@ -265,3 +265,15 @@ platform :android do
 end
 
 ```
+* Trên đầu là thông tin về AppCenter, chúng ta dùng để distribute app lên AppCenter sau khi build xong
+```
+AC_API_TOKEN = "725e83d23489a7707525794b8c1ac8a6f9e536a4"
+AC_OWNER_NAME = "shoubo.mobile"
+AC_APP_NAME_IOS = "ShouboTenken-ios"
+AC_APP_NAME_ANDROID = "ShouboTenken-android"
+AC_TEAM_INTERNAL = "Internal"
+AC_TEAM_STAGING = "Staging"
+AC_TEAM_CUSTOMER = "Customer"
+```
+[GetToken](https://docs.microsoft.com/en-us/appcenter/api-docs/)
+* 
