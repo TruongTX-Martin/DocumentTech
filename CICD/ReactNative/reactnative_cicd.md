@@ -1,5 +1,5 @@
 ### Các công cụ cần tìm hiểu 
-- [AppCenter]('https://docs.microsoft.com/en-us/appcenter/')
+### [AppCenter]('https://docs.microsoft.com/en-us/appcenter/')
 - [Fastlane]('https://docs.fastlane.tools/')
 - [Jenkin]('https://jenkins.io/doc/')
 
