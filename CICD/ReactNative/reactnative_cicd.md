@@ -82,6 +82,7 @@ fastlane ios lane or fastlane android lane
 
 ### 2.5: Sử dụng Fastlane qua Project thực tế: ShouboTenken
 
+### Fastfile
 ```
   # update_fastlane
 
