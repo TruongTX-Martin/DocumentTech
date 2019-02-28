@@ -16,4 +16,19 @@
     - Không cần nhớ các câu lệnh dài dòng, phức tạp chỉ cần nhớ fastlane là đủ 
     - Lưu trữ mọi thứ trên Git, dễ config 
     - Hỗ trợ cho cả Android, IOS, MacOS
+    ...
 ### 2.3: Cài đặt và sử dụng 
+    - Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
+    ```sh
+    xcode-select --install
+    ```
+    - Cài đặt fastlane 
+    `Sử dụng Homebrew`
+    ```sh
+    brew cask install fastlane
+    ```
+    `Sử dụng RubyGems`
+    ```sh
+    sudo gem install fastlane -NV
+    ```
+      
