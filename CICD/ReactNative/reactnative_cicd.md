@@ -324,3 +324,22 @@ appcenter(
       file_path: "build/ShouboTenken.ipa"
     )
 ```
++ Về cơ bản lane của Android cũng tương tự bên IOS, chỉ là không cần đăng ký device:
++ Đầu tiên là build
+```
+ Dir.chdir("../android") do
+      sh "./gradlew assembleRelease -PversionCode=#{Time.now.getutc.to_i}"
+    end 
+```
++ Sau là đẩy lên AppCenter
+```
+appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_ANDROID,
+      testing_group: AC_TEAM_STAGING,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "android/app/build/outputs/apk/release/app-release.apk"
+    ) 
+```
+### 3: Jenkin
