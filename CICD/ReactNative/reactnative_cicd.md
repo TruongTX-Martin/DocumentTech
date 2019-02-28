@@ -281,8 +281,46 @@ Device ID	Device Name
 e6abe66fb94294f3aa414ab36b902329bda4132d	Nexus iPhone 5
 99e1d4a637cde8fdb0abd41bbcbd702c3cc0f9e2	Nexus iPhone 6s plus
 ```
-* Tiếp đến lane build_dev,
-- Đầu tiên copy file .env_development vào file .env (file .env là file chứa thông tin các biến môi trương như url, secret_key..)
-- Tiếp tăng build_number
-- Sau đó dùng gym build với các thông số đầu vào 
-- Tiếp đến là distribute file ipa lên AppCenter
+* Tiếp đến lane build_dev
++ Đầu tiên copy file .env_development vào file .env (file .env là file chứa thông tin các biến môi trương như url, secret_key..)
+``` 
+sh "cp", "-rf", "../.env_staging", "../.env"
+```
++ Tiếp tăng build_number:
+``` 
+increment_build_number(
+      build_number: Time.now.getutc.to_i,
+      xcodeproj: "ios/shoubotenken.xcodeproj"
+)
+```
++ Sau đó dùng gym build với các thông số đầu vào:
+``` 
+gym(
+      project: "ios/shoubotenken.xcodeproj",
+      scheme: "shoubotenken",
+      export_method: "ad-hoc",
+      configuration: "Release",
+      silent: true,
+      suppress_xcode_output: true,
+      clean: true,
+      output_directory: "build",
+      output_name: "ShouboTenken.ipa",
+      export_options: {
+        iCloudContainerEnvironment: "Development",
+        provisioningProfiles: {
+          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+        }
+      }
+    )
+```
++ Tiếp đến là distribute file ipa lên AppCenter:
+```
+appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_IOS,
+      testing_group: AC_TEAM_STAGING,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "build/ShouboTenken.ipa"
+    )
+```
