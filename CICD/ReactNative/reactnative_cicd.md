@@ -17,17 +17,19 @@
     - Lưu trữ mọi thứ trên Git, dễ config 
     - Hỗ trợ cho cả Android, IOS, MacOS
     ...
-### 2.3: Cài đặt và sử dụng 
-> Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
+### 2.3: Cài đặt
+### 2.3.1: Update Xcode command line tool
+ Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
 ```sh
 xcode-select --install
 ```
-- Để sử dụng fastlane, chúng ta phải cài đặt thêm một số tool đi kèm như :
+### 2.3.2: Các tool đi kèm
+Để sử dụng fastlane, chúng ta phải cài đặt thêm một số tool đi kèm như :
 ### [match](https://docs.docker.com/compose/reference/overview/)
 ### [gym](https://docs.docker.com/compose/reference/overview/)
 ### [pilot](https://docs.docker.com/compose/reference/overview/)
 ### [supply](https://docs.docker.com/compose/reference/overview/)
-* Cài đặt fastlane 
+### 2.3.3: Cài đặt fastlane 
 `Sử dụng Homebrew`
 ```sh
 brew cask install fastlane
