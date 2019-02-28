@@ -18,17 +18,17 @@
     - Hỗ trợ cho cả Android, IOS, MacOS
     ...
 ### 2.3: Cài đặt và sử dụng 
-    - Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
-    `Docker Engine`: dùng để tạo ra Docker image và chạy Docker container.
-    xcode-select --install
-    - Cài đặt fastlane 
-    `Sử dụng Homebrew`
-    `Docker Engine`
-    ```sh
-    brew cask install fastlane
-    ```
-    `Sử dụng RubyGems`
-    ```sh
-    sudo gem install fastlane -NV
-    ```
+> Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
+```sh
+xcode-select --install
+```
+> Cài đặt fastlane 
+`Sử dụng Homebrew`
+```sh
+brew cask install fastlane
+```
+`Sử dụng RubyGems`
+```sh
+sudo gem install fastlane -NV
+```
       
