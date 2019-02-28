@@ -1,7 +1,7 @@
 ### Các công cụ cần tìm hiểu 
-### [AppCenter]('https://docs.microsoft.com/en-us/appcenter/')
+- [AppCenter](https://docs.microsoft.com/en-us/appcenter/)
 - [Fastlane](https://docs.fastlane.tools/)
-- [Jenkin]('https://jenkins.io/doc/')
+- [Jenkin](https://jenkins.io/doc/)
 
 ### 1: AppCenter
 - Trong sự kiện Connect()- 2016, Microsoft giới thiệu Visual Studio Mobile Center, một giải pháp có thể nói là all-in-one trong phát triển ứng dụng di động 
