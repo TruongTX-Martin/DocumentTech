@@ -56,7 +56,7 @@ sudo gem install fastlane -NV
 ```
 
 
-###2.4: Sử dụng Fastlane
+### 2.4: Sử dụng Fastlane
 * Đầu tiên tạo Folder fastlane/ trong project react-native ở root level, sau đó tạo 1 file gọi là Fastfile trong folder fastlane/
 * Fastfile là nơi thực hiện các lanes. Mỗi lane là một tập hợp các action được thực thi đồng bộ. Mỗi action, là một tập hợp các function mà thực thi một task nào đó 
 ```
@@ -77,9 +77,6 @@ sudo gem install fastlane -NV
 * Chúng ta define 2 nền tảng Android và IOS, trong mỗi nền tảng chứa các lane đặc biệt cho mỗi context.
 * Để thực thi các lane ta gọi các câu lênh 
 ```sh
-fastlane ios lane
-```
-```sh
-fastlane android lane
+fastlane ios lane or fastlane android lane
 ```
       
