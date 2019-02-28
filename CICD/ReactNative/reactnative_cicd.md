@@ -79,4 +79,189 @@ sudo gem install fastlane -NV
 ```sh
 fastlane ios lane or fastlane android lane
 ```
-      
+
+### 2.5: Sử dụng Fastlane qua Project thực tế ShouboTenken
+
+```
+  # update_fastlane
+
+default_platform(:ios)
+
+AC_API_TOKEN = "725e83d23489a7707525794b8c1ac8a6f9e536a4"
+AC_OWNER_NAME = "shoubo.mobile"
+AC_APP_NAME_IOS = "ShouboTenken-ios"
+AC_APP_NAME_ANDROID = "ShouboTenken-android"
+AC_TEAM_INTERNAL = "Internal"
+AC_TEAM_STAGING = "Staging"
+AC_TEAM_CUSTOMER = "Customer"
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :certificate do
+    match(type: "adhoc")
+  end
+
+  lane :device do
+    register_devices(
+      devices_file: "fastlane/device.txt",
+      team_id: "2PXJ6VZ7BK",
+      username: "xuanbinh91@gmail.com"
+    )
+  end
+
+  desc "Description of what the lane does"
+  lane :build_dev do
+    sh "cp", "-rf", "../.env_development", "../.env"
+    increment_build_number(
+      build_number: Time.now.getutc.to_i,
+      xcodeproj: "ios/shoubotenken.xcodeproj"
+    )
+    gym(
+      project: "ios/shoubotenken.xcodeproj",
+      scheme: "shoubotenken",
+      export_method: "ad-hoc",
+      configuration: "Release",
+      silent: true,
+      suppress_xcode_output: true,
+      clean: true,
+      output_directory: "build",
+      output_name: "ShouboTenken.ipa",
+      export_options: {
+        iCloudContainerEnvironment: "Development",
+        provisioningProfiles: {
+          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+        }
+      }
+    )
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_IOS,
+      testing_group: AC_TEAM_INTERNAL,
+      release_notes: "[Develop] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "build/ShouboTenken.ipa"
+    )
+  end
+
+  desc "Description of what the lane does"
+  lane :build_staging do
+    sh "cp", "-rf", "../.env_staging", "../.env"
+    increment_build_number(
+      build_number: Time.now.getutc.to_i,
+      xcodeproj: "ios/shoubotenken.xcodeproj"
+    )
+    gym(
+      project: "ios/shoubotenken.xcodeproj",
+      scheme: "shoubotenken",
+      export_method: "ad-hoc",
+      configuration: "Release",
+      silent: true,
+      suppress_xcode_output: true,
+      clean: true,
+      output_directory: "build",
+      output_name: "ShouboTenken.ipa",
+      export_options: {
+        iCloudContainerEnvironment: "Development",
+        provisioningProfiles: {
+          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+        }
+      }
+    )
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_IOS,
+      testing_group: AC_TEAM_STAGING,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "build/ShouboTenken.ipa"
+    )
+  end
+
+  desc "Description of what the lane does"
+  lane :build_staging_customer do
+    sh "cp", "-rf", "../.env_staging", "../.env"
+    increment_build_number(
+      build_number: Time.now.getutc.to_i,
+      xcodeproj: "ios/shoubotenken.xcodeproj"
+    )
+    gym(
+      project: "ios/shoubotenken.xcodeproj",
+      scheme: "shoubotenken",
+      export_method: "ad-hoc",
+      configuration: "Release",
+      silent: true,
+      suppress_xcode_output: true,
+      clean: true,
+      output_directory: "build",
+      output_name: "ShouboTenken.ipa",
+      export_options: {
+        iCloudContainerEnvironment: "Development",
+        provisioningProfiles: {
+          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+        }
+      }
+    )
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_IOS,
+      testing_group: AC_TEAM_CUSTOMER,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "build/ShouboTenken.ipa"
+    )
+  end
+end
+
+platform :android do
+  desc "Build development"
+  lane :build_dev do
+    sh "cp", "-rf", "../.env_development", "../.env"
+    Dir.chdir("../android") do
+      sh "./gradlew assembleRelease -PversionCode=#{Time.now.getutc.to_i}"
+    end
+
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_ANDROID,
+      testing_group: AC_TEAM_INTERNAL,
+      release_notes: "[Develop] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "android/app/build/outputs/apk/release/app-release.apk"
+    )
+  end
+
+  desc "Build staging"
+  lane :build_staging do
+    sh "cp", "-rf", "../.env_staging", "../.env"
+    Dir.chdir("../android") do
+      sh "./gradlew assembleRelease -PversionCode=#{Time.now.getutc.to_i}"
+    end
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_ANDROID,
+      testing_group: AC_TEAM_STAGING,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "android/app/build/outputs/apk/release/app-release.apk"
+    )
+  end
+
+
+  desc "Build staging"
+  lane :build_staging_customer do
+    sh "cp", "-rf", "../.env_staging", "../.env"
+    Dir.chdir("../android") do
+      sh "./gradlew assembleRelease -PversionCode=#{Time.now.getutc.to_i}"
+    end
+    appcenter(
+      api_token: AC_API_TOKEN,
+      owner_name: AC_OWNER_NAME,
+      app_name: AC_APP_NAME_ANDROID,
+      testing_group: AC_TEAM_CUSTOMER,
+      release_notes: "[Staging] Commit #{last_git_commit()[:commit_hash]} of #{last_git_commit()[:author]}",
+      file_path: "android/app/build/outputs/apk/release/app-release.apk"
+    )
+  end
+end
+
+```
