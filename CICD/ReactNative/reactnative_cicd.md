@@ -367,3 +367,107 @@ appcenter(
 - Là một bộ plugin hỗ trợ việc triển khai và tích hợp continuous delivery  pipelines vào Jenkins
 ### 3.1: [Cài đặt](https://jenkins.io/download/)
 ### 3.1: Sử dụng Jenkin trong CI/CD
+- Tạo file Jenkinsfile trong folder project
+``` 
+@Library([
+    'slack-message',
+    'elastic-beanstalk'
+]) _
+
+
+pipeline {
+    agent any
+    environment {
+        TER_SLACK_HOOK_KEY = 'T0D5XQZMY/BDZ4GKXFB/wv27MRQLWPGtklYrKM5jEHDz'
+        TER_SLACK_CHANNEL = '#vn-prj-shoubo-jenkins'
+    }
+    stages {
+        stage('Inform start') {
+            steps {
+                script {
+                    terSlack.message(
+                        message: "*ShouboTenken* Build Started",
+                        color: "warning",
+                        fields: [
+                            [
+                                title: "Branch",
+                                value: env.BRANCH_NAME,
+                                short: true
+                            ]
+                        ]
+                    )
+                }
+                sh "yarn install"
+            }
+        }
+        stage('Build develop') {
+            when {
+                branch "develop"
+            }
+            steps {
+                sh "fastlane ios build_dev"
+                sh "fastlane android build_dev"
+            }
+        }
+        stage('Build staging') {
+            when {
+                branch "release"
+            }
+            steps {
+                sh "fastlane ios build_staging"
+                sh "fastlane android build_staging"
+            }
+        }
+    }
+    post {
+        always {
+            sh "printenv"
+        }
+        success {
+            script {
+                terSlack.message(
+                    message: "*ShouboTenken* Build success",
+                    color: "good",
+                    fields: [
+                        [
+                            title: "Branch",
+                            value: env.BRANCH_NAME,
+                            short: true
+                        ]
+                    ]
+                )
+            }
+        }
+        failure {
+            script {
+                terSlack.message(
+                    message: "*ShouboTenken* Build failed",
+                    color: "danger",
+                    fields: [
+                        [
+                            title: "Branch",
+                            value: env.BRANCH_NAME,
+                            short: true
+                        ]
+                    ]
+                )
+            }
+        }
+        aborted {
+            script {
+                terSlack.message(
+                    message: "*ShouboTenken* Build aborted",
+                    color: "danger",
+                    fields: [
+                        [
+                            title: "Branch",
+                            value: env.BRANCH_NAME,
+                            short: true
+                        ]
+                    ]
+                )
+            }
+        }
+    }
+}
+```
