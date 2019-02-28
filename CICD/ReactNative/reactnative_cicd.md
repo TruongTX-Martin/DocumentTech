@@ -22,7 +22,7 @@
 ```sh
 xcode-select --install
 ```
-> Cài đặt fastlane 
+Cài đặt fastlane 
 `Sử dụng Homebrew`
 ```sh
 brew cask install fastlane
