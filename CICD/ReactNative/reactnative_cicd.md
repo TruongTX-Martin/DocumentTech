@@ -281,8 +281,8 @@ Device ID	Device Name
 e6abe66fb94294f3aa414ab36b902329bda4132d	Nexus iPhone 5
 99e1d4a637cde8fdb0abd41bbcbd702c3cc0f9e2	Nexus iPhone 6s plus
 ```
-* Tiếp đến lane build_dev
-+ Đầu tiên copy file .env_development vào file .env (file .env là file chứa thông tin các biến môi trương như url, secret_key..)
+* Tiếp đến lane build_dev.
++ Đầu tiên copy file .env_development vào file .env (file .env là file chứa thông tin các biến môi trương như url, secret_key..):
 ``` 
 sh "cp", "-rf", "../.env_staging", "../.env"
 ```
@@ -324,14 +324,14 @@ appcenter(
       file_path: "build/ShouboTenken.ipa"
     )
 ```
-+ Về cơ bản lane của Android cũng tương tự bên IOS, chỉ là không cần đăng ký device:
-+ Đầu tiên là build
++ Về cơ bản lane của Android cũng tương tự bên IOS, chỉ là không cần đăng ký device.
++ Đầu tiên là build:
 ```
  Dir.chdir("../android") do
       sh "./gradlew assembleRelease -PversionCode=#{Time.now.getutc.to_i}"
     end 
 ```
-+ Sau là đẩy lên AppCenter
++ Sau là đẩy lên AppCenter:
 ```
 appcenter(
       api_token: AC_API_TOKEN,
