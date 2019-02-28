@@ -19,11 +19,11 @@
     ...
 ### 2.3: Cài đặt và sử dụng 
     - Trước khi cài đặt fastlane, bạn phải đảm bảo rằng đã cài Xcode command line tools version mới nhất 
-    ```sh
+    `Docker Engine`: dùng để tạo ra Docker image và chạy Docker container.
     xcode-select --install
-    ```
     - Cài đặt fastlane 
     `Sử dụng Homebrew`
+    `Docker Engine`
     ```sh
     brew cask install fastlane
     ```
