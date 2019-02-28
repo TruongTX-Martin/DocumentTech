@@ -97,10 +97,6 @@ AC_TEAM_CUSTOMER = "Customer"
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :certificate do
-    match(type: "adhoc")
-  end
-
   lane :device do
     register_devices(
       devices_file: "fastlane/device.txt",
@@ -275,5 +271,18 @@ AC_TEAM_INTERNAL = "Internal"
 AC_TEAM_STAGING = "Staging"
 AC_TEAM_CUSTOMER = "Customer"
 ```
-[GetToken](https://docs.microsoft.com/en-us/appcenter/api-docs/)
-* 
+[How to get AC_API_TOKEN](https://docs.microsoft.com/en-us/appcenter/api-docs/)
+* Tiếp đến trong phần build cho IOS, register devices. Với tài khoản developer cá nhân thì cần đăng ký uuid những device muốn cài đặt thì mới có thể chạy được app( Hoặc có thể dùng tài khoản [enterprice]('https://developer.apple.com/programs/enterprise/') )
+Tạo 1 file device.txt và add uuid device muốn test vào
+```
+Device ID	Device Name
+4bd1cb159a52581717839dd6fb7de8cf90a21739	Nexus iPhone 7
+96ffde7fab5f456e65784e4a721c3e7165c7181a	Nexus iPhone 8
+e6abe66fb94294f3aa414ab36b902329bda4132d	Nexus iPhone 5
+99e1d4a637cde8fdb0abd41bbcbd702c3cc0f9e2	Nexus iPhone 6s plus
+```
+* Tiếp đến lane build_dev,
+- Đầu tiên copy file .env_development vào file .env (file .env là file chứa thông tin các biến môi trương như url, secret_key..)
+- Tiếp tăng build_number
+- Sau đó dùng gym build với các thông số đầu vào 
+- Tiếp đến là distribute file ipa lên AppCenter
