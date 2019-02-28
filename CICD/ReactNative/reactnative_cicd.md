@@ -27,10 +27,24 @@ xcode-select --install
 Để sử dụng fastlane, chúng ta phải cài đặt thêm một số tool đi kèm như :
 ### [match](https://medium.com/@danielvivek2006/setup-fastlane-match-for-ios-6260758a9a4e)
 * Match là một phương pháp mới cho IOS code siging, chia sẻ code siging cho các thành viên của team để đơn giản hóa việc cài đặt codesiging
-* Match tạo tất cả các certificates và provisioning profile và lưu chúng trên mỗi git repository riếng biệt. Các thành viên của team có quyền truy cập Repo này có thể sử dụng chúng cho code signing.
-### [gym](https://docs.docker.com/compose/reference/overview/)
-### [pilot](https://docs.docker.com/compose/reference/overview/)
-### [supply](https://docs.docker.com/compose/reference/overview/)
+* Match tạo tất cả các certificates và provisioning profile, lưu chúng trên mỗi git repository riêng biệt. Các thành viên của team có quyền truy cập Repo này có thể sử dụng chúng cho code signing.
+* Cài đặt: 
+```sh
+brew cask install match
+```
+### [gym](https://github.com/fastlane/fastlane/tree/master/gym)
+* Gym là môt công cụ để build and packages IOS app
+* Cài đặt: 
+```sh
+brew cask install gym
+```
+### [pilot](https://github.com/fastlane/fastlane/tree/master/pilot)
+* Tự động deploy app lên TestFlight và quản lý beta tester
+* Nhưng trong document này, Team Frontend không sử dụng TestFlight mà distribute app thông qua  AppCenter()
+* Cài đặt: 
+```sh
+brew cask install pilot
+```
 ### 2.3.3: Cài đặt fastlane 
 `Sử dụng Homebrew`
 ```sh
