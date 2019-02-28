@@ -95,7 +95,7 @@ fastlane ios lane or fastlane android lane
 
 default_platform(:ios)
 
-AC_API_TOKEN = "725e83d23489a7707525794b8c1ac8a6f9e536a4"
+AC_API_TOKEN = "**************************"
 AC_OWNER_NAME = "shoubo.mobile"
 AC_APP_NAME_IOS = "ShouboTenken-ios"
 AC_APP_NAME_ANDROID = "ShouboTenken-android"
@@ -108,8 +108,8 @@ platform :ios do
   lane :device do
     register_devices(
       devices_file: "fastlane/device.txt",
-      team_id: "2PXJ6VZ7BK",
-      username: "xuanbinh91@gmail.com"
+      team_id: "************",
+      username: "*******@gmail.com"
     )
   end
 
@@ -271,7 +271,7 @@ end
 ```
 * Trên đầu là thông tin về AppCenter, chúng ta dùng để distribute app lên AppCenter sau khi build xong
 ```
-AC_API_TOKEN = "725e83d23489a7707525794b8c1ac8a6f9e536a4"
+AC_API_TOKEN = "************************"
 AC_OWNER_NAME = "shoubo.mobile"
 AC_APP_NAME_IOS = "ShouboTenken-ios"
 AC_APP_NAME_ANDROID = "ShouboTenken-android"
