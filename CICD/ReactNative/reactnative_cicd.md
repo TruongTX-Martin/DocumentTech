@@ -22,12 +22,12 @@
 ```sh
 xcode-select --install
 ```
-Cài đặt fastlane 
+* Cài đặt fastlane 
 `Sử dụng Homebrew`
 ```sh
 brew cask install fastlane
 ```
-`Sử dụng RubyGems`
+`Hoặc sử dụng RubyGems`
 ```sh
 sudo gem install fastlane -NV
 ```
