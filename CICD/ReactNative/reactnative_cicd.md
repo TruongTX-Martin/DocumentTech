@@ -96,9 +96,9 @@ fastlane ios lane or fastlane android lane
 default_platform(:ios)
 
 AC_API_TOKEN = "**************************"
-AC_OWNER_NAME = "shoubo.mobile"
-AC_APP_NAME_IOS = "ShouboTenken-ios"
-AC_APP_NAME_ANDROID = "ShouboTenken-android"
+AC_OWNER_NAME = "**********"
+AC_APP_NAME_IOS = ""**********""
+AC_APP_NAME_ANDROID = ""**********""
 AC_TEAM_INTERNAL = "Internal"
 AC_TEAM_STAGING = "Staging"
 AC_TEAM_CUSTOMER = "Customer"
@@ -133,7 +133,7 @@ platform :ios do
       export_options: {
         iCloudContainerEnvironment: "Development",
         provisioningProfiles: {
-          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+          "com.*****.*****": "match AdHoc com.*****.*****"
         }
       }
     )
@@ -167,7 +167,7 @@ platform :ios do
       export_options: {
         iCloudContainerEnvironment: "Development",
         provisioningProfiles: {
-          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+          "com.*****.*****": "match AdHoc com.*****.*****"
         }
       }
     )
@@ -201,7 +201,7 @@ platform :ios do
       export_options: {
         iCloudContainerEnvironment: "Development",
         provisioningProfiles: {
-          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+          "com.*****.*****": "match AdHoc com.*****.*****"
         }
       }
     )
@@ -272,9 +272,9 @@ end
 * Trên đầu là thông tin về AppCenter, chúng ta dùng để distribute app lên AppCenter sau khi build xong
 ```
 AC_API_TOKEN = "************************"
-AC_OWNER_NAME = "shoubo.mobile"
-AC_APP_NAME_IOS = "ShouboTenken-ios"
-AC_APP_NAME_ANDROID = "ShouboTenken-android"
+AC_OWNER_NAME = "***************"
+AC_APP_NAME_IOS = "***************"
+AC_APP_NAME_ANDROID = "***************"
 AC_TEAM_INTERNAL = "Internal"
 AC_TEAM_STAGING = "Staging"
 AC_TEAM_CUSTOMER = "Customer"
@@ -316,7 +316,7 @@ gym(
       export_options: {
         iCloudContainerEnvironment: "Development",
         provisioningProfiles: {
-          "com.innovatube.shoubotenken": "match AdHoc com.innovatube.shoubotenken"
+          "com.****.****": "match AdHoc com.****.****"
         }
       }
     )
@@ -378,8 +378,8 @@ appcenter(
 pipeline {
     agent any
     environment {
-        TER_SLACK_HOOK_KEY = 'T0D5XQZMY/BDZ4GKXFB/wv27MRQLWPGtklYrKM5jEHDz'
-        TER_SLACK_CHANNEL = '#vn-prj-shoubo-jenkins'
+        TER_SLACK_HOOK_KEY = '*************************'
+        TER_SLACK_CHANNEL = '#****************'
     }
     stages {
         stage('Inform start') {
